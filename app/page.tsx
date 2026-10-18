@@ -93,9 +93,9 @@ export default function Home() {
       <div className="border-y border-navy/20 bg-gold py-5 text-navy">
         <div className="ticker flex w-max gap-12 whitespace-nowrap">
           {[...tickerItems, ...tickerItems].map((item, i) => (
-            <span key={i} className="flex items-center gap-12 font-display text-2xl">
+            <span key={i} className="flex items-center gap-12 font-display text-2xl text-white">
               {item}
-              <span aria-hidden="true" className="text-xl">◆</span>
+              <span aria-hidden="true" className="text-xl text-navy">◆</span>
             </span>
           ))}
         </div>
@@ -258,7 +258,7 @@ export default function Home() {
             {steps.map((step, i) => (
               <li key={step.title} className="bg-gold">
                 <Reveal delay={i * 100} className="h-full p-8">
-                  <span className="text-6xl font-extrabold leading-none text-navy/25">
+                  <span className="text-6xl font-extrabold leading-none text-white">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-6 font-display text-2xl xl:text-3xl">{step.title}</h3>
