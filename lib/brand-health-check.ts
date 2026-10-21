@@ -92,14 +92,14 @@ export const questions: Question[] = [
 // The result heading for each score range
 export function scoreBand(score: number) {
   if (score >= 80)
-    return { label: "Gold standard", color: "#2f7d4f", headline: "Your brand is in great shape.", summary: "You're doing most things right. A few refinements will turn followers into regular customers." };
+    return { label: "Gold standard", color: "var(--bhc-good)", headline: "Your brand is in great shape.", summary: "You're doing most things right. A few refinements will turn followers into regular customers." };
   if (score >= 55)
-    return { label: "Showing up", color: "#b7791f", headline: "You're showing up, but not standing out.", summary: "The basics are there. Consistency and a clearer look will make people remember you." };
+    return { label: "Showing up", color: "var(--bhc-warn)", headline: "You're showing up, but not standing out.", summary: "The basics are there. Consistency and a clearer look will make people remember you." };
   if (score >= 30)
-    return { label: "Inconsistent", color: "#b34a3a", headline: "Customers can't rely on seeing you.", summary: "Your page is active in bursts. Competitors who post steadily are getting the attention you could have." };
-  return { label: "Invisible online", color: "#b34a3a", headline: "Most customers can't find you online yet.", summary: "That also means the biggest gains are ahead of you. A few steady changes will make a visible difference fast." };
+    return { label: "Inconsistent", color: "var(--bhc-bad)", headline: "Customers can't rely on seeing you.", summary: "Your page is active in bursts. Competitors who post steadily are getting the attention you could have." };
+  return { label: "Invisible online", color: "var(--bhc-bad)", headline: "Most customers can't find you online yet.", summary: "That also means the biggest gains are ahead of you. A few steady changes will make a visible difference fast." };
 }
 
 export function partColor(pct: number) {
-  return pct >= 0.8 ? "#2f7d4f" : pct >= 0.5 ? "#b7791f" : "#b34a3a";
+  return pct >= 0.8 ? "var(--bhc-good)" : pct >= 0.5 ? "var(--bhc-warn)" : "var(--bhc-bad)";
 }

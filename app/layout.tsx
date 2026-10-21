@@ -5,6 +5,7 @@ import "./globals.css";
 import { AgentationProvider } from "@/components/AgentationProvider";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SiteChrome } from "@/components/SiteChrome";
 
 // Greconian: the Greek-style brand font, used for all headings
 const greconian = localFont({
@@ -41,9 +42,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${greconian.variable} ${montserrat.variable}`}>
       <body className="font-sans antialiased">
-        <Navbar />
+        <SiteChrome>
+          <Navbar />
+        </SiteChrome>
         <main className="overflow-x-clip">{children}</main>
-        <Footer />
+        <SiteChrome>
+          <Footer />
+        </SiteChrome>
         <AgentationProvider />
       </body>
     </html>

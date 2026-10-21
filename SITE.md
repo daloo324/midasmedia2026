@@ -19,11 +19,11 @@
 - **Services** (`/services`): a full section for each service (what you get, who it's for), the two ways to work together (monthly content partner or one-off project), the 4-step process, and common questions.
 - **Work** (`/work`): a case study of the Midas brand itself: the brief, the idea, the identity (crest, wordmark, colours), the campaign poster and the multi-device rollout.
 - **Contact** (`/contact`): a project brief form, what happens after you get in touch, and the WhatsApp/email/phone cards.
-- **Brand Health Check** (`/brand-health-check`): a free 2-minute quiz for Gaborone businesses. Visitors pick their type of business and answer 8 questions about their Facebook and Instagram. They get a score out of 100, a breakdown, and the 3 biggest things to fix. Then there's a form to claim 3 free sample posts, which opens WhatsApp with their details and score ready to send to you. It's **hidden from the menu** on purpose (share the link directly, e.g. in your Instagram bio or ads), and it shows the Midas logo at the top instead of the usual menu bar. The footer still appears.
+- **Brand Health Check** (`/brand-health-check`): a free 2-minute quiz for Gaborone businesses. Visitors pick their type of business and answer 8 questions about their Facebook and Instagram. They get a score out of 100, a breakdown, and the 3 biggest things to fix. Then there's a form to claim 3 free sample posts, which opens WhatsApp with their details and score ready to send to you. It's an exact copy of your uploaded design, with its own colours (a slightly lighter navy `#0f2a37`, gold `#c39a45` and a warm off-white background) and the website logo in place of the text logo. It switches to darker colours automatically when a visitor's phone or computer is in dark mode, like the original. It stands on its own: **no menu and no site footer**, and it isn't linked from the menu. Share the link directly, e.g. in your Instagram bio or ads.
 
 ## Components
-- **Navbar** (`components/Navbar.tsx`): logo, page links (the current page is underlined in gold) and a "WhatsApp us" button. On phones it becomes a menu button that opens a full-screen menu. It's switched off on the Brand Health Check page (the `hiddenOn` list at the top of the file).
-- **Footer** (`components/Footer.tsx`): logo, tagline, page links and contact details. Shows on every page.
+- **Navbar** (`components/Navbar.tsx`): logo, page links (the current page is underlined in gold) and a "WhatsApp us" button. On phones it becomes a menu button that opens a full-screen menu. It's switched off on the Brand Health Check page.
+- **Footer** (`components/Footer.tsx`): logo, tagline, page links and contact details. Shows on every page except the Brand Health Check.
 - **PageHeader** (`components/PageHeader.tsx`): the navy banner at the top of the About, Services, Work and Contact pages
 - **ContactCTA** (`components/ContactCTA.tsx`): the "Ready to look like you mean it?" block at the bottom of most pages
 - **ContactCards** (`components/ContactCards.tsx`): the three WhatsApp / email / phone cards
@@ -45,6 +45,7 @@ Web-sized versions of your original files live in `public/images/`:
 Your original full-size files are still in `public/` and haven't been changed. The browser tab icon (`app/icon.png`) is the round crest.
 
 ## Recent Changes
+- 2026-10-18: Rebuilt the Brand Health Check to match the uploaded file exactly: its own colours, sizes and spacing, its automatic dark mode, and no site menu or footer. (Pages listed under `standalonePages` in `lib/content.ts` hide the menu and footer.)
 - 2026-10-18: Homepage: the scrolling services strip (Social content, Brand identity…) and the big 01–04 numbers in the "How it works" section are now white.
 - 2026-10-18: Added the Brand Health Check quiz page (`/brand-health-check`) from the uploaded design, with the website logo in place of its text logo and your real WhatsApp number. Not linked in the menu. (Removed the Free Posts page that was added by mistake.)
 - 2026-10-17: Added About, Services, Work and Contact pages. Moved the menu and footer onto every page, added a phone menu, a project brief form (sends via WhatsApp or email), and FAQs on the Services page. Homepage buttons now link to the new pages.
@@ -64,5 +65,5 @@ Your original full-size files are still in `public/` and haven't been changed. T
 - **Change colours:** edit the values at the top of `app/globals.css` (`--navy`, `--gold`, `--cream`)
 - **Change service descriptions or process steps:** edit `lib/content.ts`
 - **Change a page's wording:** each page lives in its own folder, e.g. `app/about/page.tsx`
-- **Change the Brand Health Check questions, scores or fix suggestions:** edit `lib/brand-health-check.ts`
+- **Change the Brand Health Check questions, scores or fix suggestions:** edit `lib/brand-health-check.ts`. Its colours are at the top of `app/brand-health-check/page.tsx`
 - **Add a new page:** ask Claude, e.g. "add an About page"

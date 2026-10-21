@@ -7,14 +7,9 @@ import { useState } from "react";
 import { contact } from "@/lib/contact";
 import { navLinks } from "@/lib/content";
 
-// Pages that show their own logo header instead of the menu (e.g. the Brand Health Check)
-const hiddenOn = ["/brand-health-check"];
-
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  if (hiddenOn.includes(pathname)) return null;
 
   return (
     <header className="absolute inset-x-0 top-0 z-30">
