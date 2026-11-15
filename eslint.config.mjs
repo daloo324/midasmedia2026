@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The scroll-craft engine is vendored as-is and never edited.
+    "public/scrollcraft.js",
   ]),
 ]);
 

@@ -80,16 +80,6 @@ body {
   }
 }
 
-/* "What we make" list: the row you point at stays in full ink, the rest go quieter */
-@media (hover: hover) {
-  .cap-list:hover .cap-name {
-    color: var(--ink-soft);
-  }
-  .cap-list .cap-row:hover .cap-name {
-    color: var(--navy);
-  }
-}
-
 /* Slow drift on a picture */
 @keyframes drift {
   from {

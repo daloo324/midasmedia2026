@@ -148,5 +148,6 @@ export const navLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-// Pages that stand on their own: no site menu or footer (e.g. the Brand Health Check)
-export const standalonePages = ["/brand-health-check"];
+// Pages that bring their own menu and footer, so the site-wide ones are hidden:
+// the homepage (its river and closing seal) and the Brand Health Check landing page.
+export const standalonePages = ["/", "/brand-health-check"];
