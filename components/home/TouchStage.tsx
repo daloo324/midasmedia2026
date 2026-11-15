@@ -134,8 +134,8 @@ export function TouchStage({ sectionId }: { sectionId: string }) {
       raf = requestAnimationFrame(tick);
       const p = parseFloat(section!.style.getPropertyValue("--sc-p")) || 0;
 
-      // Scroll gilds along the path between 15% and 80% of the scene. It only ever adds gold.
-      const target = Math.min(1, Math.max(0, (p - 0.15) / 0.65));
+      // Scroll gilds along the path between 10% and 62% of the scene. It only ever adds gold.
+      const target = Math.min(1, Math.max(0, (p - 0.1) / 0.52));
       if (!goldRef.current && target > autoT && W) {
         const r = W * 0.06;
         let prev: { x: number; y: number } | null = autoT > 0 ? autoPoint(autoT) : null;
@@ -148,7 +148,7 @@ export function TouchStage({ sectionId }: { sectionId: string }) {
         autoT = target;
         lastPt = prev;
       }
-      if (!goldRef.current && p > 0.82) flood(lastPt ?? undefined);
+      if (!goldRef.current && p > 0.66) flood(lastPt ?? undefined);
 
       if (dirty && goldImg.complete && goldImg.naturalWidth) {
         ctx!.globalCompositeOperation = "source-over";

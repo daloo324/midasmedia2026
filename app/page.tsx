@@ -99,7 +99,7 @@ export default function Home() {
         </section>
 
         {/* 3 · THE TOUCH (the peak): gild the king yourself. */}
-        <section id="touch" className="touch" data-sc-act="pin" data-sc-span="3.2" aria-label="The Midas touch">
+        <section id="touch" className="touch" data-sc-act="pin" data-sc-span="2.2" aria-label="The Midas touch">
           <TouchStage sectionId="touch" />
         </section>
 
