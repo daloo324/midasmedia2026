@@ -70,9 +70,11 @@ The original full-size files have been removed from the website (they were publi
 - 2026-10-17: Switched all headings to your Greconian brand font and resized them to fit. Phone numbers, email and step numbers now use Montserrat so they're easier to read.
 - 2026-10-17: Built the full homepage from the brand assets (logo, cover banner, social poster, under-construction mockup). Set navy/gold/cream colours and Bebas Neue + Montserrat fonts. Added favicon.
 
+## Before connecting the domain (midasmedia.co.bw)
+- **Add past client work.** Replace the two "Client project, coming soon" slots on the homepage (`workTiles` in `lib/content.ts`) with real past projects (title, type, year and an image), and add the strongest ones to the Work page, which is currently only the Midas case study. Don't connect the domain until this is done.
+
 ## Still to do / things to confirm
 - Facebook, Instagram and LinkedIn links: the icons are on your artwork, but we need the actual page addresses before adding them to the site
-- Real client work: the homepage has two "Client project, coming soon" slots waiting for it, and the Work page is still a case study of Midas's own brand
 - Check the six services in "What we make" (especially Motion graphics) and their one-line descriptions
 - Check the About page story, the Services page questions and the "What happens next" steps on the Contact page match how you actually work
 - Optional: a form that sends straight to your inbox needs an email service connected. Right now it hands off to WhatsApp or the visitor's email app.
