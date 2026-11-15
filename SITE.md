@@ -42,9 +42,15 @@ Web-sized versions of your original files live in `public/images/`:
 - `statue-poster.webp`: the marble king poster
 - `cover.webp`: the "Your Brand Partner" banner
 
-Your original full-size files are still in `public/` and haven't been changed. The browser tab icon (`app/icon.png`) is the round crest.
+The original full-size files have been removed from the website (they were public and very large). Keep your masters in your design files, not in the site. The browser tab icon (`app/icon.png`) is the round crest.
+
+## Search & sharing
+- **Sitemap** (`app/sitemap.ts`): the list of pages Google should find, at midasmedia.co.bw/sitemap.xml. When you add a new page, add it to the list here.
+- **Robots** (`app/robots.ts`): tells search engines they're welcome to visit every page.
+- **Link previews:** the site address (`https://midasmedia.co.bw`) is set in `app/layout.tsx`, so sharing a link on WhatsApp or Facebook shows the marble king poster.
 
 ## Recent Changes
+- 2026-11-15: Pre-launch fixes. Switched the WhatsApp/phone number everywhere to the official business line +267 76 513 917. Removed old files that would have been publicly reachable (the original Brand Health Check and Free Posts HTML files, plus about 23 MB of full-size images). Added the sitemap, robots file and site address for link previews.
 - 2026-10-18: Rebuilt the Brand Health Check to match the uploaded file exactly: its own colours, sizes and spacing, its automatic dark mode, and no site menu or footer. (Pages listed under `standalonePages` in `lib/content.ts` hide the menu and footer.)
 - 2026-10-18: Homepage: the scrolling services strip (Social content, Brand identity…) and the big 01–04 numbers in the "How it works" section are now white.
 - 2026-10-18: Added the Brand Health Check quiz page (`/brand-health-check`) from the uploaded design, with the website logo in place of its text logo and your real WhatsApp number. Not linked in the menu. (Removed the Free Posts page that was added by mistake.)
@@ -53,6 +59,7 @@ Your original full-size files are still in `public/` and haven't been changed. T
 - 2026-10-17: Built the full homepage from the brand assets (logo, cover banner, social poster, under-construction mockup). Set navy/gold/cream colours and Bebas Neue + Montserrat fonts. Added favicon.
 
 ## Still to do / things to confirm
+- Some artwork images (the marble king poster and the "Your Brand Partner" banner) have the old number +267 75721332 printed on them. Re-export them with the new number.
 - Facebook, Instagram and LinkedIn links: the icons are on your artwork, but we need the actual page addresses before adding them to the site
 - Real client work for the Work page (right now it's a case study of Midas's own brand)
 - Check the About page story, the Services page questions and the "What happens next" steps on the Contact page match how you actually work
