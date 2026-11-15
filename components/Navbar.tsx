@@ -32,7 +32,7 @@ export function Navbar() {
               className="h-6 w-auto"
               priority
             />
-            <span className="mt-1 text-[0.6rem] font-medium tracking-[0.18em] text-cream/80">
+            <span className="mt-1 text-[0.6rem] font-medium tracking-[0.18em] text-cream">
               MEDIA SOLUTIONS
             </span>
           </span>
@@ -47,7 +47,7 @@ export function Navbar() {
                   href={link.href}
                   aria-current={active ? "page" : undefined}
                   className={`border-b-2 pb-1 transition-colors hover:text-gold ${
-                    active ? "border-gold text-gold" : "border-transparent text-cream/80"
+                    active ? "border-gold text-gold" : "border-transparent text-cream"
                   }`}
                 >
                   {link.label}
@@ -62,9 +62,9 @@ export function Navbar() {
             href={contact.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-gold transition-colors hover:bg-cream hover:text-navy sm:inline-block"
+            className="btn btn--gold hidden min-h-11 px-5 text-[0.8rem] sm:inline-flex"
           >
-            WhatsApp us
+            Start on WhatsApp
           </a>
           <button
             type="button"
@@ -105,9 +105,9 @@ export function Navbar() {
           href={contact.whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-10 inline-block rounded-full bg-gold px-7 py-4 text-sm font-bold uppercase tracking-wider text-navy"
+          className="btn btn--gold mt-10"
         >
-          WhatsApp us
+          Start on WhatsApp
         </a>
       </div>
     </header>

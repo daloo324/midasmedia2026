@@ -21,7 +21,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
+        figure="crest"
         title={
           <>
             Let&apos;s make something <span className="text-gold">worth looking at.</span>
@@ -33,25 +33,19 @@ export default function ContactPage() {
       <section className="relative overflow-hidden bg-gold py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
           <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-navy">Send a brief</p>
             <h2 className="mb-8 font-display text-3xl leading-[1.08] text-navy sm:text-4xl">
-              Tell us what you need.
+              Send a brief. Tell us what you need.
             </h2>
             <BriefForm />
           </Reveal>
 
           <Reveal delay={120} className="text-navy lg:pt-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em]">What happens next</p>
-            <ol className="mt-6 space-y-8">
-              {next.map((step, i) => (
-                <li key={step.title} className="flex gap-5">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-bold text-gold">
-                    {i + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-xl">{step.title}</h3>
-                    <p className="mt-1 leading-relaxed text-navy/80">{step.body}</p>
-                  </div>
+            <h2 className="font-display text-2xl">What happens next</h2>
+            <ol className="mt-6 grid gap-3">
+              {next.map((step) => (
+                <li key={step.title} className="rounded-[1.5rem] bg-navy p-6 text-cream">
+                  <h3 className="font-display text-xl text-gold">{step.title}</h3>
+                  <p className="mt-2 text-[17px] leading-relaxed">{step.body}</p>
                 </li>
               ))}
             </ol>
@@ -69,9 +63,8 @@ export default function ContactPage() {
       <section className="bg-navy py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="mb-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold">Or reach us directly</p>
             <h2 className="font-display text-3xl leading-[1.08] text-cream sm:text-4xl">
-              Pick whatever&apos;s easiest.
+              Or reach us directly. <span className="text-gold">Pick whatever&apos;s easiest.</span>
             </h2>
           </Reveal>
           <ContactCards />
