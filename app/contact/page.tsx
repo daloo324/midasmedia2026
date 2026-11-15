@@ -8,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Start a project with Midas Media Solutions. WhatsApp +267 75721332 or email info@midasmedia.co.bw.",
+    "Start a project with Midas Media Solutions. WhatsApp +267 76 513 917 or email info@midasmedia.co.bw.",
 };
 
 const next = [

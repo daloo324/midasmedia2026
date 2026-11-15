@@ -21,6 +21,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://midasmedia.co.bw"),
   title: {
     default: "Midas Media Solutions | Consistent Content, Stronger Brands",
     template: "%s | Midas Media Solutions",
