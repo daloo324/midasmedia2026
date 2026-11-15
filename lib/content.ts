@@ -79,21 +79,64 @@ export const services = [
   },
 ] as const;
 
+// The homepage list of what we make. Each one links to its section on the Services page.
+export const capabilities = [
+  { name: "Social content", href: "/services#content-design", body: "A month of posts, stories and ads, planned ahead and on brand every time." },
+  { name: "Brand identity", href: "/services#brand-identity", body: "Logo, colours, type and the rules that hold them together." },
+  { name: "Websites", href: "/services#websites", body: "Fast sites that read well on a phone and make the next step obvious." },
+  { name: "Campaigns", href: "/services#campaigns-print", body: "One idea for a launch or promotion, carried across every surface." },
+  { name: "Print & signage", href: "/services#campaigns-print", body: "Banners, billboards, flyers and menus, sent print-ready to your printer." },
+  { name: "Motion graphics", href: "/services", body: "Animated posts, reel covers and logo reveals for your feeds." },
+];
+
+// The homepage work grid. To show a real client project, swap a placeholder
+// for an entry with an image, e.g.
+// { title: "Munchie Munchie", category: "Brand identity", year: "2026",
+//   image: "/images/work/munchie.webp", alt: "…", href: "/work" }
+export type WorkTile = {
+  title: string;
+  category: string;
+  year?: string;
+  image?: string;
+  alt?: string;
+  ground?: "navy" | "gold" | "cream";
+  fit?: "cover" | "contain";
+  href?: string;
+};
+
+export const workTiles: WorkTile[] = [
+  { title: "Midas multi-device rollout", category: "Web", year: "2026", image: "/images/devices-cover.webp", alt: "Midas brand shown across laptop, tablet and phone screens", fit: "cover", href: "/work" },
+  { title: "Midas campaign poster", category: "Social", year: "2026", image: "/images/statue-poster.webp", alt: "Campaign poster: marble statue of a king in a gold crown and reflective sunglasses", fit: "cover", href: "/work" },
+  { title: "Client project", category: "Coming soon" },
+  { title: "Client project", category: "Coming soon" },
+  { title: "Midas cover banner", category: "Print", year: "2026", image: "/images/cover.webp", alt: "Midas cover banner reading Your Brand Partner, split diagonally in navy and gold", fit: "cover", href: "/work" },
+  { title: "Midas crest", category: "Identity", year: "2026", image: "/images/crest-badge.webp", alt: "The Midas crest: a bearded king with a crown inside a Greek key circle", ground: "gold", fit: "contain", href: "/work" },
+];
+
+// image: shown in the open panel of "How it works" on the homepage
 export const steps = [
   {
     title: "Sit down",
+    image: "/images/king-mark.png",
+    imageAlt: "The Midas king mark",
     body: "We learn your business, your customers and what's not working with how you show up today.",
   },
   {
     title: "Set the look",
+    image: "/images/crest-badge.webp",
+    imageAlt: "The Midas crest, part of the brand kit",
     body: "Colours, type, tone of voice and templates. The rules that make every piece feel like yours.",
   },
   {
     title: "Ship it",
+    image: "/images/statue-poster.webp",
+    imageAlt: "A finished Midas campaign poster",
     body: "Finished designs, ready to post or print, delivered on a schedule you can count on.",
   },
   {
     title: "Keep going",
+    image: "/images/devices-cover.webp",
+    imageAlt: "The Midas look carried across laptop, tablet and phone",
     body: "Month after month, the same standard. That's where brands get strong: in the repetition.",
   },
 ];

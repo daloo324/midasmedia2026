@@ -8,13 +8,14 @@
   - Navy `#002333`: the main background
   - Gold `#C79C51`: highlights, buttons and the diagonal shape in the hero
   - Cream `#F7F2E8`: light sections and text on navy
+  - Deep gold `#7D5F28` and soft navy `#4A6472`: only where gold or navy text needs to be readable on cream
 - **Fonts:**
   - **Greconian** for all headings: your Greek-style brand font (the same one as the "YOUR BRAND PARTNER" banner). The font file lives in `app/fonts/Greconian.ttf`.
-  - **Montserrat** for body text, buttons, numbers and contact details (the same font as "MEDIA SOLUTIONS" in the logo)
+  - **Montserrat** for body text, buttons, numbers and contact details (the same font as "MEDIA SOLUTIONS" in the logo). The font file is stored in the project (`app/fonts/Montserrat-Variable.woff2`), so the site doesn't depend on Google Fonts.
 - **Signature details:** the Greek key (maze-like) border pattern from the crest, the navy/gold diagonal split from the cover banner, and the crowned king logo.
 
 ## Pages
-- **Homepage** (`/`): the hero ("The Midas touch, for your brand."), scrolling services strip, the 4 services (each one links to its section on the Services page), selected work, how it works, and contact.
+- **Homepage** (`/`): a run of full-screen colour "chapters" that moves from navy into gold. In order: the hero ("The Midas touch, for your brand."); "Why brands look weak", a statement set like a staircase; "Everything we touch turns gold", where visitors type their business name and switch between a plain, home-made post and the Midas version (with a link to send their name on WhatsApp); "What we make", six services at poster size; "Our work", a staggered grid with two placeholder slots for client projects; "Gold, every week", the four steps as panels that run from navy into gold; and a gold "Start" band that opens WhatsApp.
 - **About** (`/about`): why the studio is called Midas, the "Consistent content. Stronger brands." philosophy, four rules we design by, and the three kinds of business we work with.
 - **Services** (`/services`): a full section for each service (what you get, who it's for), the two ways to work together (monthly content partner or one-off project), the 4-step process, and common questions.
 - **Work** (`/work`): a case study of the Midas brand itself: the brief, the idea, the identity (crest, wordmark, colours), the campaign poster and the multi-device rollout.
@@ -23,7 +24,10 @@
 
 ## Components
 - **Navbar** (`components/Navbar.tsx`): logo, page links (the current page is underlined in gold) and a "WhatsApp us" button. On phones it becomes a menu button that opens a full-screen menu. It's switched off on the Brand Health Check page.
-- **Footer** (`components/Footer.tsx`): logo, tagline, page links and contact details. Shows on every page except the Brand Health Check.
+- **Footer** (`components/Footer.tsx`): the WhatsApp number set very large as the last thing on every page, with the wordmark, a one-line description, email, back-to-top link and page links. Shows on every page except the Brand Health Check.
+- **TouchTool** (`components/TouchTool.tsx`): the homepage "type your business name" try-it piece.
+- **ProcessAccordion** (`components/ProcessAccordion.tsx`): the homepage "Gold, every week" panels. Click a stage to open it. Each stage's text and picture live in `steps` in `lib/content.ts`.
+- **Homepage work grid**: the tiles live in `workTiles` in `lib/content.ts`. To add a real client project, replace one of the "Client project / Coming soon" entries with its title, category, year and image (instructions are in the file).
 - **PageHeader** (`components/PageHeader.tsx`): the navy banner at the top of the About, Services, Work and Contact pages
 - **ContactCTA** (`components/ContactCTA.tsx`): the "Ready to look like you mean it?" block at the bottom of most pages
 - **ContactCards** (`components/ContactCards.tsx`): the three WhatsApp / email / phone cards
@@ -50,6 +54,7 @@ The original full-size files have been removed from the website (they were publi
 - **Link previews:** the site address (`https://midasmedia.co.bw`) is set in `app/layout.tsx`, so sharing a link on WhatsApp or Facebook shows the marble king poster.
 
 ## Recent Changes
+- 2026-11-15: Redesigned the homepage below the hero to remove the "template" look: no small labels above headings, no 01–04 numbering, no thin divider lines or shadows. Each section is now its own full colour field. Added the "type your business name" try-it piece, a poster-size services list, a staggered work grid with placeholder slots for client work, clickable process panels and a gold "Start" band. Fixed two hard-to-read colour pairs (white on gold, gold on cream). Replaced the footer with one where the WhatsApp number is the headline. Removed the scrolling services strip.
 - 2026-11-15: Pre-launch fixes. Switched the WhatsApp/phone number everywhere to the official business line +267 76 513 917. Removed old files that would have been publicly reachable (the original Brand Health Check and Free Posts HTML files, plus about 23 MB of full-size images). Added the sitemap, robots file and site address for link previews. Swapped in the re-exported marble king poster and "Your Brand Partner" banner, which now show the new number.
 - 2026-10-18: Rebuilt the Brand Health Check to match the uploaded file exactly: its own colours, sizes and spacing, its automatic dark mode, and no site menu or footer. (Pages listed under `standalonePages` in `lib/content.ts` hide the menu and footer.)
 - 2026-10-18: Homepage: the scrolling services strip (Social content, Brand identity…) and the big 01–04 numbers in the "How it works" section are now white.
@@ -60,7 +65,9 @@ The original full-size files have been removed from the website (they were publi
 
 ## Still to do / things to confirm
 - Facebook, Instagram and LinkedIn links: the icons are on your artwork, but we need the actual page addresses before adding them to the site
-- Real client work for the Work page (right now it's a case study of Midas's own brand)
+- Real client work: the homepage has two "Client project, coming soon" slots waiting for it, and the Work page is still a case study of Midas's own brand
+- The About, Services, Work and Contact pages still use the older style (small labels above headings, numbered steps). They can be brought in line with the homepage next.
+- Check the six services in "What we make" (especially Motion graphics) and their one-line descriptions
 - Check the About page story, the Services page questions and the "What happens next" steps on the Contact page match how you actually work
 - Optional: a form that sends straight to your inbox needs an email service connected. Right now it hands off to WhatsApp or the visitor's email app.
 - Check that "Botswana" is the right location line, or swap in your city

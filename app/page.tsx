@@ -1,73 +1,110 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ContactCTA } from "@/components/ContactCTA";
 import { GreekKey } from "@/components/GreekKey";
+import { ProcessAccordion } from "@/components/ProcessAccordion";
 import { Reveal } from "@/components/Reveal";
-import { services, steps } from "@/lib/content";
+import { TouchTool } from "@/components/TouchTool";
+import { contact } from "@/lib/contact";
+import { capabilities, workTiles, type WorkTile } from "@/lib/content";
 
-const tickerItems = [
-  "Social content",
-  "Brand identity",
-  "Web design",
-  "Campaigns",
-  "Print & signage",
-  "Motion graphics",
+// The homepage is a run of full-screen colour "chapters" that moves from navy into gold:
+// hero → statement → try-it → what we make → work → how it works → start band → footer.
+
+const statement = [
+  { text: "Most brands don't look weak", colour: "text-cream" },
+  { text: "because of one bad post.", colour: "text-gold" },
+  { text: "They look weak", colour: "text-cream" },
+  { text: "because nothing", colour: "text-gold" },
+  { text: "lines up.", colour: "text-cream" },
 ];
+// Each line of the statement steps further right, like a staircase
+const stairs = ["lg:pl-0", "lg:pl-[6vw]", "lg:pl-[12vw]", "lg:pl-[18vw]", "lg:pl-[24vw]"];
+const stairsPhone = ["pl-0", "pl-[5vw]", "pl-[10vw]", "pl-[15vw]", "pl-[20vw]"];
+
+// Where each work tile sits in the staggered grid (desktop), with deliberate empty cells
+const workPlacement = [
+  { cls: "lg:col-span-2 lg:col-start-1 lg:row-start-1", ratio: "aspect-[3/2]" }, // row 1: wide
+  { cls: "lg:col-start-4 lg:row-start-1", ratio: "aspect-[4/5]" }, //              row 1 (heading takes column 3)
+  { cls: "lg:col-start-2 lg:row-start-2", ratio: "aspect-[4/5]" }, //              row 2
+  { cls: "lg:col-start-3 lg:row-start-2", ratio: "aspect-[4/5]" }, //              row 2
+  { cls: "lg:col-span-2 lg:col-start-3 lg:row-start-3", ratio: "aspect-[2000/754]" }, // row 3: wide (banner shape)
+  { cls: "lg:col-start-1 lg:row-start-3", ratio: "aspect-[4/5]" }, //              row 3
+];
+const phonePlacement = [
+  "col-span-2",
+  "col-start-2",
+  "col-start-1",
+  "col-start-2",
+  "col-span-2",
+  "col-start-1",
+];
+const grounds = { navy: "bg-navy-soft", gold: "bg-gold", cream: "bg-cream" } as const;
+
+function WorkTileView({ tile, ratio }: { tile: WorkTile; ratio: string }) {
+  const media = tile.image ? (
+    <div className={`relative h-full w-full overflow-hidden ${grounds[tile.ground ?? "navy"]}`}>
+      <Image
+        src={tile.image}
+        alt={tile.alt ?? ""}
+        fill
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        className={`transition-transform duration-700 group-hover:scale-[1.04] ${
+          tile.fit === "contain" ? "object-contain p-[12%]" : "object-cover"
+        }`}
+      />
+    </div>
+  ) : (
+    // Placeholder until real client work is added in lib/content.ts
+    <div className="flex h-full w-full items-center justify-center bg-navy-soft p-6 text-center">
+      <p className="font-display text-lg leading-tight text-gold">Client work arriving soon</p>
+    </div>
+  );
+
+  return (
+    <>
+      <div className={`${ratio} overflow-hidden rounded-[1.5rem]`}>{media}</div>
+      <p className="mt-3 flex flex-col justify-between gap-1 text-[15px] text-cream sm:flex-row">
+        <span className="font-semibold">{tile.title}</span>
+        <span>{[tile.category, tile.year].filter(Boolean).join(", ")}</span>
+      </p>
+    </>
+  );
+}
 
 export default function Home() {
   return (
     <>
-
-      {/* ───────── HERO ───────── */}
+      {/* ───────── HERO: navy and gold split, from the brand cover ───────── */}
       <section className="relative isolate min-h-[100svh] overflow-hidden bg-navy pt-32">
-        <GreekKey
-          className="absolute -left-10 top-1/2 -z-10 hidden h-[520px] w-[520px] -translate-y-1/2 text-navy-soft opacity-60 lg:block"
-        />
-        {/* Gold diagonal, borrowed from the brand cover banner */}
+        <GreekKey className="absolute -left-10 top-1/2 -z-10 hidden h-[520px] w-[520px] -translate-y-1/2 text-navy-soft opacity-60 lg:block" />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gold [clip-path:polygon(0_68%,100%_48%,100%_100%,0_100%)] lg:[clip-path:polygon(72%_0,100%_0,100%_100%,46%_100%)] xl:[clip-path:polygon(64%_0,100%_0,100%_100%,32%_100%)]"
+          className="absolute inset-0 -z-10 bg-gold [clip-path:polygon(0_68%,100%_48%,100%_100%,0_100%)] lg:[clip-path:polygon(74%_0,100%_0,100%_100%,50%_100%)]"
         />
 
-        <div className="mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-[1.05fr_1fr]">
+        <div className="mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-[1.45fr_1fr]">
           <div>
-            <p className="rise mb-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              <span className="h-px w-10 bg-gold" />
-              Digital design studio · Botswana
-            </p>
-            <h1
-              className="rise font-display text-[clamp(2.6rem,6vw,5.25rem)] leading-[1.02] text-cream"
-              style={{ animationDelay: "120ms" }}
-            >
-              The Midas
-              <br />
-              touch, <span className="text-gold">for</span>
-              <br />
-              your brand.
+            <h1 className="font-display text-[clamp(2.1rem,8.6vw,4.5rem)] leading-[1.02] text-cream lg:text-[clamp(2.5rem,5vw,4.5rem)]">
+              <span className="mask-line"><span className="whitespace-nowrap">The Midas touch,</span></span>
+              <span className="mask-line"><span className="whitespace-nowrap" style={{ animationDelay: "110ms" }}>for your brand.</span></span>
             </h1>
-            <p
-              className="rise mt-8 max-w-md text-lg leading-relaxed text-cream/75"
-              style={{ animationDelay: "260ms" }}
-            >
-              We design the social content, brand identities and websites that
-              keep businesses looking sharp, week after week.
+            <p className="rise mt-8 max-w-md text-lg leading-relaxed text-cream" style={{ animationDelay: "500ms" }}>
+              A design studio in Gaborone making the social content, brand identities
+              and websites that keep businesses looking sharp, week after week.
             </p>
-            <div
-              className="rise mt-10 flex flex-wrap items-center gap-4"
-              style={{ animationDelay: "380ms" }}
-            >
+            <div className="rise mt-10 flex flex-wrap items-center gap-6" style={{ animationDelay: "500ms" }}>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-3 rounded-full bg-gold px-7 py-4 text-sm font-bold uppercase tracking-wider text-navy transition-transform hover:-translate-y-0.5"
+                className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-gold px-7 text-base font-semibold text-navy transition-transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-cream"
               >
                 Start a project
-                <span className="transition-transform group-hover:translate-x-1">→</span>
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
               <Link
-                href="/work"
-                className="px-2 py-4 text-sm font-semibold uppercase tracking-wider text-cream underline decoration-gold decoration-2 underline-offset-8 transition-colors hover:text-gold"
+                href="#work"
+                className="py-3 text-base font-semibold text-cream underline decoration-gold decoration-2 underline-offset-8 transition-colors hover:text-gold"
               >
-                See our work
+                See the work
               </Link>
             </div>
           </div>
@@ -79,198 +116,169 @@ export default function Home() {
               width={1300}
               height={1271}
               priority
-              className="relative w-full rounded-[2rem] shadow-[0_40px_80px_-20px_rgba(0,24,42,0.7)]"
+              sizes="(min-width: 1024px) 40vw, 100vw"
+              className="relative w-full rounded-[1.5rem]"
             />
-            <div className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-navy px-6 py-5 shadow-xl sm:block">
-              <p className="font-display text-xl leading-tight text-gold">Consistent content.</p>
-              <p className="font-display text-xl leading-tight text-cream">Stronger brands.</p>
+            <div className="absolute -bottom-6 -left-6 hidden rounded-[1.5rem] bg-navy px-6 py-5 sm:block">
+              <p className="font-display text-lg leading-tight text-gold">Consistent content.</p>
+              <p className="font-display text-lg leading-tight text-cream">Stronger brands.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ───────── TICKER ───────── */}
-      <div className="border-y border-navy/20 bg-gold py-5 text-navy">
-        <div className="ticker flex w-max gap-12 whitespace-nowrap">
-          {[...tickerItems, ...tickerItems].map((item, i) => (
-            <span key={i} className="flex items-center gap-12 font-display text-2xl text-white">
-              {item}
-              <span aria-hidden="true" className="text-xl text-navy">◆</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ───────── SERVICES ───────── */}
-      <section id="services" className="bg-cream py-24 text-navy sm:py-32">
-        <div className="mx-auto grid max-w-7xl gap-16 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
-          <Reveal className="lg:sticky lg:top-24 lg:self-start">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              What we do
-            </p>
-            <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl">
-              Everything your brand puts out, made to match.
+      {/* ───────── STATEMENT: the problem, as a staircase ───────── */}
+      <section aria-labelledby="why-heading" className="relative bg-navy-deep py-28 lg:py-40">
+        <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-12">
+          <div className="lg:col-span-9">
+            <h2 id="why-heading" className="mb-10 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.98] text-cream">
+              Why brands look weak
             </h2>
-            <p className="mt-6 max-w-sm text-lg leading-relaxed text-navy/70">
-              Most brands don&apos;t look weak because of one bad post. They look weak
-              because nothing lines up. We fix that.
-            </p>
-            <Link
-              href="/services"
-              className="group mt-8 inline-flex items-center gap-3 rounded-full bg-navy px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-gold transition-transform hover:-translate-y-0.5"
-            >
-              All services
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-          </Reveal>
-
-          <div className="divide-y divide-navy/15 border-y border-navy/15">
-            {services.map((service, i) => (
-              <Reveal key={service.number} delay={i * 80}>
-                <Link
-                  href={`/services#${service.slug}`}
-                  className="group grid gap-4 py-10 sm:grid-cols-[5rem_1fr]"
-                >
-                  <span className="text-3xl font-bold text-gold transition-transform group-hover:-translate-y-1">
-                    {service.number}
+            <Reveal>
+              <p className="font-display text-[clamp(1.25rem,6vw,1.5rem)] leading-[1.2] md:text-[2rem] lg:text-[2.25rem]">
+                {statement.map((line, i) => (
+                  <span key={line.text} className={`block ${line.colour} ${stairsPhone[i]} ${stairs[i]}`}>
+                    {line.text}
                   </span>
-                  <div>
-                    <h3 className="font-display text-3xl transition-colors group-hover:text-gold sm:text-4xl">
-                      {service.title}
-                    </h3>
-                    <p className="mt-3 max-w-xl leading-relaxed text-navy/70">{service.body}</p>
-                    <ul className="mt-5 flex flex-wrap gap-2">
-                      {service.tags.map((tag) => (
-                        <li
-                          key={tag}
-                          className="rounded-full border border-navy/20 px-3 py-1 text-xs font-medium text-navy/80"
-                        >
-                          {tag}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ───────── WORK ───────── */}
-      <section id="work" className="relative bg-navy py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <Reveal className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-                Selected work
+                ))}
               </p>
-              <h2 className="max-w-3xl font-display text-4xl leading-[1.05] text-cream sm:text-5xl">
-                Old-world authority. <span className="text-gold">New-world attitude.</span>
-              </h2>
-            </div>
-            <p className="max-w-sm leading-relaxed text-cream/70">
-              Our own brand rollout: a crowned marble king in mirrored shades,
-              a Greek key border, and one system carried from social to screen.{" "}
-              <Link href="/work" className="font-semibold text-gold underline underline-offset-4 hover:text-gold-light">
-                Read the case study →
-              </Link>
-            </p>
-          </Reveal>
-
-          <div className="grid gap-5 lg:grid-cols-12">
-            <Reveal className="lg:col-span-7 lg:row-span-2">
-              <figure className="group h-full overflow-hidden rounded-[2rem] bg-navy-deep">
-                <Image
-                  src="/images/statue-poster.webp"
-                  alt="Campaign poster: marble statue of a king wearing a gold crown and reflective sunglasses, with the line Consistent Content, Stronger Brands"
-                  width={1400}
-                  height={1400}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-              </figure>
             </Reveal>
-
-            <Reveal className="lg:col-span-5" delay={100}>
-              <figure className="group overflow-hidden rounded-[2rem] bg-gold">
-                <Image
-                  src="/images/devices-cover.webp"
-                  alt="Midas brand shown across laptop, tablet and phone screens"
-                  width={1400}
-                  height={713}
-                  className="w-full transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                <figcaption className="flex items-center justify-between px-6 py-4 text-sm font-semibold text-navy">
-                  <span>Multi-device brand rollout</span>
-                  <span className="font-display text-lg">Web · Digital</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-
-            <Reveal className="lg:col-span-5" delay={180}>
-              <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] border border-gold/30 bg-navy-deep p-8">
-                <GreekKey className="absolute inset-0 text-navy-soft opacity-40" />
-                <div className="relative flex items-start justify-between gap-6">
-                  <Image
-                    src="/images/crest-badge.webp"
-                    alt="The Midas crest: a bearded king with a crown inside a Greek key circle"
-                    width={600}
-                    height={610}
-                    className="w-32 sm:w-40"
-                  />
-                  <span className="rounded-full border border-gold/40 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-gold">
-                    Identity
-                  </span>
-                </div>
-                <p className="relative mt-8 font-display text-3xl leading-tight text-cream">
-                  Crest, wordmark & <span className="text-gold">brand system</span>
-                </p>
-              </div>
+            <Reveal delay={150}>
+              <p className="mt-16 max-w-md text-lg leading-relaxed text-cream">
+                We fix that: one look, carried across every post, page and print, every week.
+              </p>
             </Reveal>
           </div>
 
-          <Reveal className="mt-5">
-            <figure className="overflow-hidden rounded-[2rem]">
+          <div className="grid grid-cols-2 gap-4 lg:col-span-3 lg:grid-cols-1">
+            <Reveal delay={200} className="aspect-[3/2] overflow-hidden rounded-[1.5rem]">
               <Image
-                src="/images/cover.webp"
-                alt="Midas cover banner reading Your Brand Partner, split diagonally in navy and gold"
-                width={2000}
-                height={754}
-                className="w-full"
+                src="/images/gold-leaves.webp"
+                alt="Gold monstera leaves, the Midas motif"
+                width={1300}
+                height={560}
+                sizes="(min-width: 1024px) 20vw, 50vw"
+                className="drift h-full w-full object-cover"
               />
-            </figure>
-          </Reveal>
+            </Reveal>
+            <Reveal delay={290} className="aspect-[3/2] overflow-hidden rounded-[1.5rem]">
+              <Image
+                src="/images/statue-poster.webp"
+                alt="The crowned marble king from the Midas campaign, in mirrored sunglasses"
+                width={1400}
+                height={1400}
+                sizes="(min-width: 1024px) 20vw, 50vw"
+                className="h-full w-full object-cover object-[30%_48%]"
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* ───────── PROCESS ───────── */}
-      <section id="process" className="relative overflow-hidden bg-gold py-24 text-navy sm:py-32">
-        <GreekKey className="absolute -right-20 -top-20 h-80 w-80 text-navy opacity-[0.08]" />
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-          <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em]">How it works</p>
-            <h2 className="max-w-3xl font-display text-4xl leading-[1.05] sm:text-5xl">
-              Gold isn&apos;t made in a day. It&apos;s made every week.
-            </h2>
-          </Reveal>
+      {/* ───────── TRY IT: the Midas touch on your own name ───────── */}
+      <section id="touch" className="bg-gold py-28 lg:py-40">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <TouchTool />
+        </div>
+      </section>
 
-          <ol className="mt-16 grid gap-px overflow-hidden rounded-[2rem] bg-navy/20 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step, i) => (
-              <li key={step.title} className="bg-gold">
-                <Reveal delay={i * 100} className="h-full p-8">
-                  <span className="text-6xl font-extrabold leading-none text-white">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-6 font-display text-2xl xl:text-3xl">{step.title}</h3>
-                  <p className="mt-3 leading-relaxed text-navy/80">{step.body}</p>
+      {/* ───────── WHAT WE MAKE: capabilities at poster scale ───────── */}
+      <section id="services" className="flex min-h-[90svh] items-center bg-cream py-[18vh] text-navy">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none text-ink-soft">What we make</h2>
+          <ul className="cap-list mt-[0.35em]">
+            {capabilities.map((cap, i) => (
+              <li key={cap.name} className="cap-row">
+                <Reveal delay={i * 70}>
+                  <Link
+                    href={cap.href}
+                    className="grid gap-2 pb-7 focus:outline-none focus-visible:ring-4 focus-visible:ring-gold lg:grid-cols-12 lg:items-baseline lg:gap-8 lg:pb-[0.3em]"
+                  >
+                    <span className="cap-name font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-none transition-colors lg:col-span-7">
+                      {cap.name}
+                    </span>
+                    <span className="pl-5 text-lg leading-snug lg:col-span-4 lg:col-start-8 lg:pl-0">{cap.body}</span>
+                  </Link>
                 </Reveal>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
-      <ContactCTA />
+      {/* ───────── WORK: staggered tiles, real client work to come ───────── */}
+      <section id="work" className="bg-navy py-28 sm:py-36">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-3 gap-y-10 px-5 sm:px-8 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-14">
+          <Reveal className="col-span-2 lg:col-span-1 lg:col-start-3 lg:row-start-1 lg:self-center">
+            <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.95] text-cream">
+              Our
+              <br />
+              work
+            </h2>
+            <Link
+              href="/work"
+              className="mt-6 inline-block text-lg font-semibold text-gold underline decoration-2 underline-offset-8 hover:text-cream"
+            >
+              The Midas case study →
+            </Link>
+          </Reveal>
+
+          {workTiles.map((tile, i) => {
+            const place = workPlacement[i];
+            const inner = <WorkTileView tile={tile} ratio={place.ratio} />;
+            return (
+              <Reveal key={`${tile.title}-${i}`} delay={(i % 2) * 90} className={`group self-start ${phonePlacement[i]} ${place.cls}`}>
+                {tile.href ? (
+                  <Link href={tile.href} className="block focus:outline-none focus-visible:ring-4 focus-visible:ring-gold">
+                    {inner}
+                  </Link>
+                ) : (
+                  inner
+                )}
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ───────── HOW IT WORKS: panels running from navy into gold ───────── */}
+      <section id="process" className="flex min-h-[90svh] items-center bg-cream py-28 text-navy">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[0.98] lg:col-span-5">Gold, every week</h2>
+            <p className="max-w-xl text-lg leading-relaxed lg:col-span-5 lg:col-start-7">
+              Consistency is the whole job. This is how a month with us runs, from
+              the first sit-down to the weekly rhythm that makes a brand strong.
+            </p>
+          </Reveal>
+          <Reveal delay={120} className="mt-16">
+            <ProcessAccordion />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───────── START: the whole band is the button ───────── */}
+      <section aria-labelledby="start-heading" className="bg-cream">
+        <a
+          href={`${contact.whatsappLink}?text=${encodeURIComponent("Hi Midas, I'd like to start a project.")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative flex min-h-[46svh] flex-col justify-between bg-gold px-5 pb-6 pt-8 text-navy [clip-path:polygon(0_6vw,6vw_0,100%_0,100%_100%,0_100%)] hover:bg-navy hover:text-gold focus:outline-none focus-visible:bg-navy focus-visible:text-gold sm:px-8 lg:min-h-[60svh]"
+        >
+          <div className="mx-auto flex w-full max-w-7xl items-start justify-between gap-6 pl-[4vw]">
+            <p className="max-w-md text-[17px] leading-snug lg:text-lg">
+              Start a project on WhatsApp. Tell us what you&apos;re working on and we&apos;ll
+              come back with ideas, not a sales pitch.
+            </p>
+            <svg aria-hidden="true" viewBox="0 0 48 48" className="h-8 w-8 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 lg:h-12 lg:w-12">
+              <path d="M12 36 L36 12 M16 12 H36 V32" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="square" />
+            </svg>
+          </div>
+          <h2 id="start-heading" className="mx-auto w-full max-w-7xl font-display text-[clamp(5rem,26vw,22rem)] leading-[0.8]">
+            Start
+          </h2>
+        </a>
+      </section>
     </>
   );
 }

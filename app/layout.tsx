@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import { AgentationProvider } from "@/components/AgentationProvider";
 import { Navbar } from "@/components/Navbar";
@@ -14,9 +14,12 @@ const greconian = localFont({
   display: "swap",
 });
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
+// Montserrat: body text, buttons and numbers. Stored in the project so the site
+// doesn't depend on Google Fonts.
+const montserrat = localFont({
+  src: "./fonts/Montserrat-Variable.woff2",
   variable: "--font-body",
+  weight: "100 900",
   display: "swap",
 });
 
@@ -41,8 +44,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${greconian.variable} ${montserrat.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${greconian.variable} ${montserrat.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Marks the page as script-ready, so sections only hide for their entrance when they can come back */}
+        <Script id="js-ready" strategy="beforeInteractive">
+          {`document.documentElement.classList.add("js")`}
+        </Script>
+      </head>
+      <body id="top" className="font-sans antialiased">
         <SiteChrome>
           <Navbar />
         </SiteChrome>

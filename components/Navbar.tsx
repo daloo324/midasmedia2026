@@ -62,7 +62,7 @@ export function Navbar() {
             href={contact.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-gold shadow-lg transition-colors hover:bg-cream hover:text-navy sm:inline-block"
+            className="hidden rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-gold transition-colors hover:bg-cream hover:text-navy sm:inline-block"
           >
             WhatsApp us
           </a>
@@ -71,7 +71,7 @@ export function Navbar() {
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
             aria-label={open ? "Close menu" : "Open menu"}
-            className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full bg-navy shadow-lg md:hidden"
+            className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full bg-navy md:hidden"
           >
             <span className={`h-0.5 w-5 bg-gold transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
             <span className={`h-0.5 w-5 bg-gold transition-opacity ${open ? "opacity-0" : ""}`} />
@@ -82,8 +82,8 @@ export function Navbar() {
 
       {/* Phone menu */}
       <div
-        className={`fixed inset-0 bg-navy px-5 pt-28 transition-opacity duration-300 md:hidden ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+        className={`fixed inset-0 bg-navy px-5 pt-28 transition-[opacity,visibility] duration-300 md:hidden ${
+          open ? "visible opacity-100" : "invisible pointer-events-none opacity-0"
         }`}
       >
         <ul className="flex flex-col gap-2">
@@ -92,7 +92,7 @@ export function Navbar() {
               <Link
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`block border-b border-gold/20 py-4 font-display text-3xl ${
+                className={`block py-3 font-display text-3xl ${
                   pathname === link.href ? "text-gold" : "text-cream"
                 }`}
               >

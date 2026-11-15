@@ -6,6 +6,8 @@
   --navy-soft: #0b3245;
   --gold: #c79c51;
   --gold-light: #e2c48a;
+  --gold-deep: #7d5f28; /* darker gold: readable on cream and under cream text */
+  --ink-soft: #4a6472; /* quieter navy for secondary text on cream */
   --cream: #f7f2e8;
   --background: var(--navy);
   --foreground: var(--cream);
@@ -18,6 +20,8 @@
   --color-navy-soft: var(--navy-soft);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);
+  --color-gold-deep: var(--gold-deep);
+  --color-ink-soft: var(--ink-soft);
   --color-cream: var(--cream);
   --color-muted: var(--muted);
   --color-background: var(--background);
@@ -56,22 +60,52 @@ body {
   animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-/* Scrolling ticker */
-@keyframes ticker {
+/* Masked headline: each line rises from behind its own baseline */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.mask-line > span {
+  display: block;
+  animation: mask-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes mask-rise {
   from {
-    transform: translateX(0);
+    transform: translateY(105%);
   }
   to {
-    transform: translateX(-50%);
+    transform: none;
   }
 }
 
-.ticker {
-  animation: ticker 32s linear infinite;
+/* "What we make" list: the row you point at stays in full ink, the rest go quieter */
+@media (hover: hover) {
+  .cap-list:hover .cap-name {
+    color: var(--ink-soft);
+  }
+  .cap-list .cap-row:hover .cap-name {
+    color: var(--navy);
+  }
+}
+
+/* Slow drift on a picture */
+@keyframes drift {
+  from {
+    transform: scale(1.04) translateY(0);
+  }
+  to {
+    transform: scale(1.1) translateY(-2%);
+  }
+}
+.drift {
+  animation: drift 18s ease-in-out infinite alternate;
 }
 
 /* Scroll reveal (toggled by components/Reveal.tsx) */
-.reveal {
+/* Only hide while the script is running, so content shows without it */
+.js .reveal {
   opacity: 0;
   transform: translateY(32px);
   transition:
@@ -79,17 +113,18 @@ body {
     transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .rise,
-  .ticker {
+  .drift,
+  .mask-line > span {
     animation: none;
   }
-  .reveal {
+  .js .reveal {
     opacity: 1;
     transform: none;
   }
