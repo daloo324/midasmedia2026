@@ -62,7 +62,7 @@ export default function ServicesPage() {
     <>
       <PageHeader
         edge="bg-cream"
-        eyebrow="Services"
+        figure="leaves"
         title={
           <>
             Four ways we make your brand <span className="text-gold">look like gold.</span>
@@ -75,7 +75,7 @@ export default function ServicesPage() {
             <li key={s.slug}>
               <a
                 href={`#${s.slug}`}
-                className="block rounded-full border border-gold/40 px-4 py-2 text-sm font-semibold text-cream transition-colors hover:border-gold hover:bg-gold hover:text-navy"
+                className="block rounded-full bg-navy-soft px-5 py-2.5 text-[15px] font-semibold text-cream transition-colors hover:bg-gold hover:text-navy"
               >
                 {s.title}
               </a>
@@ -90,7 +90,7 @@ export default function ServicesPage() {
           <section
             key={service.slug}
             id={service.slug}
-            className="scroll-mt-8 border-b border-navy/10 py-20 sm:py-28"
+            className={`scroll-mt-8 py-20 sm:py-28 ${i % 2 === 1 ? "bg-[#efe6d3]" : ""}`}
           >
             <div
               className={`mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 ${
@@ -119,26 +119,22 @@ export default function ServicesPage() {
               </Reveal>
 
               <Reveal delay={120}>
-                <p className="text-3xl font-bold text-gold">{service.number}</p>
-                <h2 className="mt-3 font-display text-4xl leading-[1.05] sm:text-5xl">
+                <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl">
                   {service.title}
                 </h2>
-                <p className="mt-6 text-lg leading-relaxed text-navy/75">{service.long}</p>
+                <p className="mt-6 text-lg leading-relaxed text-navy">{service.long}</p>
 
-                <p className="mt-8 text-xs font-bold uppercase tracking-[0.25em] text-navy/60">
-                  What you get
-                </p>
-                <ul className="mt-4 space-y-3">
+                <h3 className="mt-10 text-lg font-bold">What you get</h3>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                   {service.includes.map((item) => (
-                    <li key={item} className="flex gap-3 leading-relaxed">
-                      <span aria-hidden="true" className="mt-1.5 text-xs text-gold">◆</span>
+                    <li key={item} className="rounded-2xl bg-navy px-5 py-4 text-[15px] font-medium leading-snug text-cream">
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                <p className="mt-8 border-l-2 border-gold pl-4 text-sm leading-relaxed text-navy/70">
-                  <span className="font-bold text-navy">Good for: </span>
+                <p className="mt-8 text-lg leading-relaxed text-navy">
+                  <span className="font-bold">Good for: </span>
                   {service.goodFor}
                 </p>
               </Reveal>
@@ -152,9 +148,6 @@ export default function ServicesPage() {
         <GreekKey className="absolute -left-24 top-0 h-full w-[380px] text-navy-soft opacity-50" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
-              Working together
-            </p>
             <h2 className="max-w-3xl font-display text-4xl leading-[1.05] text-cream sm:text-5xl">
               Two ways to <span className="text-gold">work with us.</span>
             </h2>
@@ -165,23 +158,15 @@ export default function ServicesPage() {
               <Reveal key={way.name} delay={i * 120}>
                 <article
                   className={`h-full rounded-[2rem] p-8 sm:p-10 ${
-                    i === 0 ? "bg-gold text-navy" : "border border-gold/40 bg-navy-deep text-cream"
+                    i === 0 ? "bg-gold text-navy" : "bg-navy-deep text-cream"
                   }`}
                 >
-                  <span
-                    className={`inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-widest ${
-                      i === 0 ? "bg-navy text-gold" : "border border-gold/40 text-gold"
-                    }`}
-                  >
-                    {way.tag}
-                  </span>
-                  <h3 className="mt-6 font-display text-3xl sm:text-4xl">{way.name}</h3>
-                  <p className={`mt-4 leading-relaxed ${i === 0 ? "text-navy/80" : "text-cream/70"}`}>
-                    {way.body}
-                  </p>
+                  <h3 className="font-display text-3xl sm:text-4xl">{way.name}</h3>
+                  <p className={`mt-2 text-base font-bold ${i === 0 ? "text-navy" : "text-gold"}`}>{way.tag}</p>
+                  <p className="mt-4 text-lg leading-relaxed">{way.body}</p>
                   <ul className="mt-8 space-y-3">
                     {way.points.map((p) => (
-                      <li key={p} className="flex gap-3 text-sm font-medium">
+                      <li key={p} className="flex gap-3 text-[15px] font-medium">
                         <span aria-hidden="true" className={i === 0 ? "text-navy" : "text-gold"}>
                           ✓
                         </span>
@@ -197,23 +182,23 @@ export default function ServicesPage() {
       </section>
 
       {/* ───────── PROCESS ───────── */}
-      <section className="bg-gold py-24 text-navy sm:py-28">
+      <section className="bg-cream py-24 text-navy sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em]">How it works</p>
             <h2 className="max-w-3xl font-display text-4xl leading-[1.05] sm:text-5xl">
-              Four steps. Then we keep going.
+              How it works. <span className="text-gold-deep">Then we keep going.</span>
             </h2>
           </Reveal>
-          <ol className="mt-14 grid gap-px overflow-hidden rounded-[2rem] bg-navy/20 sm:grid-cols-2 lg:grid-cols-4">
+          {/* The four steps run from navy into gold, left to right */}
+          <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
-              <li key={step.title} className="bg-gold">
-                <Reveal delay={i * 100} className="h-full p-8">
-                  <span className="text-6xl font-extrabold leading-none text-navy/25">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-6 font-display text-2xl xl:text-3xl">{step.title}</h3>
-                  <p className="mt-3 leading-relaxed text-navy/80">{step.body}</p>
+              <li
+                key={step.title}
+                className={`rounded-[2rem] ${["bg-navy-deep text-cream", "bg-navy-soft text-cream", "bg-gold-deep text-cream", "bg-gold text-navy"][i]}`}
+              >
+                <Reveal delay={i * 100} className="flex h-full min-h-[16rem] flex-col justify-end p-8">
+                  <h3 className="font-display text-2xl xl:text-3xl">{step.title}</h3>
+                  <p className="mt-3 text-[17px] leading-relaxed">{step.body}</p>
                 </Reveal>
               </li>
             ))}
@@ -222,31 +207,30 @@ export default function ServicesPage() {
       </section>
 
       {/* ───────── FAQ ───────── */}
-      <section className="bg-cream py-24 text-navy sm:py-32">
+      <section className="bg-[#efe6d3] py-24 text-navy sm:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold">Questions</p>
             <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl">Good to know.</h2>
-            <p className="mt-6 max-w-sm leading-relaxed text-navy/70">
+            <p className="mt-6 max-w-sm text-lg leading-relaxed text-navy">
               Something else on your mind?{" "}
               <Link href="/contact" className="font-semibold text-navy underline decoration-gold decoration-2 underline-offset-4">
                 Ask us directly.
               </Link>
             </p>
           </Reveal>
-          <div className="divide-y divide-navy/15 border-y border-navy/15">
+          <div className="grid gap-3">
             {faqs.map((faq) => (
-              <details key={faq.q} className="group py-6">
+              <details key={faq.q} className="group rounded-[1.5rem] bg-cream px-6 py-5 sm:px-8">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-bold">
                   {faq.q}
                   <span
                     aria-hidden="true"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-navy/20 text-gold transition-transform group-open:rotate-45"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy text-xl text-gold transition-transform group-open:rotate-45"
                   >
                     +
                   </span>
                 </summary>
-                <p className="mt-4 max-w-2xl leading-relaxed text-navy/75">{faq.a}</p>
+                <p className="mt-4 max-w-2xl text-lg leading-relaxed text-navy">{faq.a}</p>
               </details>
             ))}
           </div>

@@ -42,7 +42,7 @@ export function BriefForm() {
   };
 
   const field =
-    "mt-2 w-full rounded-xl border border-navy/20 bg-white px-4 py-3.5 text-navy placeholder:text-navy/40 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40";
+    "mt-2 w-full rounded-xl border border-navy/25 bg-white px-4 py-3.5 text-base text-navy placeholder:text-ink-soft focus:border-navy focus:outline-none focus:ring-2 focus:ring-gold";
 
   return (
     <form
@@ -59,7 +59,7 @@ export function BriefForm() {
           <input value={name} onChange={(e) => setName(e.target.value)} className={field} placeholder="Name" autoComplete="name" />
         </label>
         <label className="block text-sm font-bold">
-          Business <span className="font-medium text-navy/50">(optional)</span>
+          Business <span className="font-medium text-ink-soft">(optional)</span>
           <input value={business} onChange={(e) => setBusiness(e.target.value)} className={field} placeholder="Business name" autoComplete="organization" />
         </label>
       </div>
@@ -75,8 +75,8 @@ export function BriefForm() {
                 type="button"
                 onClick={() => toggle(s.title)}
                 aria-pressed={on}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
-                  on ? "border-navy bg-navy text-gold" : "border-navy/20 hover:border-navy"
+                className={`min-h-11 rounded-full px-5 text-[15px] font-semibold transition-colors ${
+                  on ? "bg-navy text-gold" : "bg-[#efe6d3] text-navy hover:bg-gold"
                 }`}
               >
                 {s.title}
@@ -104,22 +104,14 @@ export function BriefForm() {
       )}
 
       <div className="mt-8 flex flex-wrap gap-3">
-        <button
-          type="submit"
-          className="group inline-flex items-center gap-3 rounded-full bg-navy px-7 py-4 text-sm font-bold uppercase tracking-wider text-gold transition-transform hover:-translate-y-0.5"
-        >
-          Send on WhatsApp
-          <span className="transition-transform group-hover:translate-x-1">→</span>
+        <button type="submit" className="btn btn--navy">
+          Send on WhatsApp <span className="arr" aria-hidden="true">→</span>
         </button>
-        <button
-          type="button"
-          onClick={() => send("email")}
-          className="rounded-full border-2 border-navy px-7 py-4 text-sm font-bold uppercase tracking-wider text-navy transition-colors hover:bg-navy hover:text-cream"
-        >
+        <button type="button" onClick={() => send("email")} className="btn btn--gold">
           Send by email
         </button>
       </div>
-      <p className="mt-4 text-xs text-navy/60">
+      <p className="mt-4 text-[15px] text-ink-soft">
         This opens WhatsApp or your email app with your message filled in. Nothing is sent until you press send there.
       </p>
     </form>

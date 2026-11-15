@@ -28,6 +28,9 @@
 - **The Midas touch** (`components/home/TouchStage.tsx`): the gilding effect in scene 3.
 - **The river** (`components/home/HomeEngine.tsx`): the gold progress channel on the right of the homepage, and the code that starts the engine.
 - **Homepage pictures** (`public/home/`): the marble hall, the king (`bust-marble.webp`) and his gold version (`bust-gold.webp`, made from the same picture so they line up exactly), the gold leaves, and the river video (`river.mp4`, plus a smaller `river-m.mp4` for phones). All generated with Magnific for this page. To swap the king, replace both bust files with images of exactly the same size.
+- **Page header** (`components/PageHeader.tsx`): the top of About, Services, Work and Contact. Pick the figure with `figure="king" | "goldKing" | "leaves" | "crest"`.
+- **Closing block** (`components/ContactCTA.tsx`): the gold "Ready to look like you mean it?" close with the crest seal, at the end of About, Services and Work.
+- **Buttons**: one pill style for the whole site, in `app/globals.css` (`btn btn--gold`, `btn btn--navy`, `btn btn--cream`).
 - **Footer** (`components/Footer.tsx`): the WhatsApp number set very large as the last thing on every page, with the wordmark, a one-line description, email, back-to-top link and page links. Shows on every page except the Brand Health Check.
 - **Homepage work rail**: the pieces live in `workTiles` in `lib/content.ts`. To add a real client project, replace one of the "Client project / Coming soon" entries with its title, category, year and image (instructions are in the file). The four steps in "Gold, every week" come from `steps` in the same file.
 - **PageHeader** (`components/PageHeader.tsx`): the navy banner at the top of the About, Services, Work and Contact pages
@@ -56,6 +59,7 @@ The original full-size files have been removed from the website (they were publi
 - **Link previews:** the site address (`https://midasmedia.co.bw`) is set in `app/layout.tsx`, so sharing a link on WhatsApp or Facebook shows the marble king poster.
 
 ## Recent Changes
+- 2026-11-15: Brought About, Services, Work and Contact in line with the homepage. Each page now opens in the dark marble hall with its own figure (the marble king on About, the gold leaves on Services, the gilded king on Work, the crest on Contact). Removed the small labels above headings, the 01–04 numbering, the thin outlines and dividers, and the shadows. Buttons now use the same pill style everywhere ("Start on WhatsApp"). Every page closes with the homepage's gold "seal" (press the crest to start on WhatsApp). The footer is a little shorter.
 - 2026-11-15: Rebuilt the homepage as a scroll-driven experience (scroll-craft): a layered marble-hall hero, the "Midas touch" where visitors turn the marble king to gold with their cursor or finger, a sliding work rail, a scroll-scrubbed river of gold, and a crest "seal" close. New pictures and the river video were generated with Magnific. The site-wide menu and footer are hidden on the homepage because it has its own. Checked at desktop, phone and reduced-motion settings.
 - 2026-11-15: Redesigned the homepage below the hero to remove the "template" look: no small labels above headings, no 01–04 numbering, no thin divider lines or shadows. Each section is now its own full colour field. Added the "type your business name" try-it piece, a poster-size services list, a staggered work grid with placeholder slots for client work, clickable process panels and a gold "Start" band. Fixed two hard-to-read colour pairs (white on gold, gold on cream). Replaced the footer with one where the WhatsApp number is the headline. Removed the scrolling services strip.
 - 2026-11-15: Pre-launch fixes. Switched the WhatsApp/phone number everywhere to the official business line +267 76 513 917. Removed old files that would have been publicly reachable (the original Brand Health Check and Free Posts HTML files, plus about 23 MB of full-size images). Added the sitemap, robots file and site address for link previews. Swapped in the re-exported marble king poster and "Your Brand Partner" banner, which now show the new number.
@@ -69,7 +73,6 @@ The original full-size files have been removed from the website (they were publi
 ## Still to do / things to confirm
 - Facebook, Instagram and LinkedIn links: the icons are on your artwork, but we need the actual page addresses before adding them to the site
 - Real client work: the homepage has two "Client project, coming soon" slots waiting for it, and the Work page is still a case study of Midas's own brand
-- The About, Services, Work and Contact pages still use the older style (small labels above headings, numbered steps). They can be brought in line with the homepage next.
 - Check the six services in "What we make" (especially Motion graphics) and their one-line descriptions
 - Check the About page story, the Services page questions and the "What happens next" steps on the Contact page match how you actually work
 - Optional: a form that sends straight to your inbox needs an email service connected. Right now it hands off to WhatsApp or the visitor's email app.

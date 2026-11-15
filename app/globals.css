@@ -119,3 +119,26 @@ body {
     transform: none;
   }
 }
+
+/* One button shape for the whole site: the pill from the design system.
+   Inside the components layer so Tailwind classes (hidden, margins, sizes) can still adjust it. */
+@layer components {
+.btn {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  min-height: 3.25rem; padding: 0 1.75rem; border-radius: 999px;
+  font: 700 0.95rem/1 var(--font-body), system-ui, sans-serif; letter-spacing: 0.04em; text-transform: uppercase;
+  text-decoration: none; cursor: pointer; border: 0;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1), background-color 200ms, color 200ms;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); }
+.btn .arr { transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1); }
+.btn:hover .arr { transform: translateX(4px); }
+.btn--gold { background: var(--gold); color: var(--navy); }
+.btn--gold:hover { background: var(--gold-light, #e2c48a); }
+.btn--navy { background: var(--navy); color: var(--gold); }
+.btn--navy:hover { background: var(--navy-deep, #00182a); }
+.btn--cream { background: var(--cream); color: var(--navy); }
+.btn--cream:hover { background: #fff; }
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+}

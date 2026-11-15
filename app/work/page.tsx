@@ -23,7 +23,7 @@ const deliverables = [
 ];
 
 const palette = [
-  { name: "Royal Navy", hex: "#002333", className: "bg-navy text-cream border border-gold/30" },
+  { name: "Royal Navy", hex: "#002333", className: "bg-navy-deep text-cream" },
   { name: "Midas Gold", hex: "#C79C51", className: "bg-gold text-navy" },
   { name: "Marble Cream", hex: "#F7F2E8", className: "bg-cream text-navy" },
 ];
@@ -32,7 +32,7 @@ export default function WorkPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Case study · Midas Media Solutions"
+        figure="goldKing"
         title={
           <>
             Our own brand, <span className="text-gold">start to finish.</span>
@@ -40,19 +40,13 @@ export default function WorkPage() {
         }
         intro="Before we design for anyone else, we put ourselves through the same process. Here's how the Midas brand came together, from the first sketch of the crest to the full rollout."
       >
-        <dl className="rise mt-12 grid max-w-3xl grid-cols-2 gap-6 border-t border-gold/20 pt-8 sm:grid-cols-3" style={{ animationDelay: "360ms" }}>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Client</dt>
-            <dd className="mt-2 text-sm text-cream">Midas Media Solutions</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Services</dt>
-            <dd className="mt-2 text-sm text-cream">Identity, content, web</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Line</dt>
-            <dd className="mt-2 text-sm text-cream">Consistent content, stronger brands</dd>
-          </div>
+        <dl className="rise mt-10 grid max-w-3xl gap-x-10 gap-y-3 text-[15px] sm:grid-cols-[auto_1fr]" style={{ animationDelay: "300ms" }}>
+          <dt className="font-bold text-gold">Client</dt>
+          <dd className="text-cream">Midas Media Solutions</dd>
+          <dt className="font-bold text-gold">Services</dt>
+          <dd className="text-cream">Identity, content, web</dd>
+          <dt className="font-bold text-gold">Line</dt>
+          <dd className="text-cream">Consistent content, stronger brands</dd>
         </dl>
       </PageHeader>
 
@@ -60,7 +54,7 @@ export default function WorkPage() {
       <section className="bg-gold pb-24 pt-4 sm:pb-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <figure className="overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-30px_rgba(0,35,51,0.6)]">
+            <figure className="overflow-hidden rounded-[2rem]">
               <Image
                 src="/images/cover.webp"
                 alt="Midas cover banner reading Your Brand Partner, split diagonally in navy and gold"
@@ -74,23 +68,21 @@ export default function WorkPage() {
 
           <div className="mt-20 grid gap-12 text-navy lg:grid-cols-2 lg:gap-20">
             <Reveal>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em]">The brief</p>
               <h2 className="font-display text-3xl leading-[1.08] sm:text-4xl">
-                Look premium without looking stiff.
+                The brief: look premium without looking stiff.
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-navy/80">
+              <p className="mt-6 text-lg font-medium leading-relaxed text-navy">
                 A design studio&apos;s brand is its first portfolio piece. It had to feel
                 valuable and trustworthy, worth paying for, while still having the energy
                 and humour of a studio that makes scroll-stopping content.
               </p>
             </Reveal>
             <Reveal delay={120}>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em]">The idea</p>
               <h2 className="font-display text-3xl leading-[1.08] sm:text-4xl">
-                A classical king with modern attitude.
+                The idea: a classical king with modern attitude.
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-navy/80">
-                The Midas myth gave us the gold. Ancient Greece gave us the crest, the
+              <p className="mt-6 text-lg font-medium leading-relaxed text-navy">
+                The Midas myth gave us the gold. The classical world gave us the crest, the
                 lettering and the Greek key border. Then we broke the seriousness on purpose:
                 mirrored sports shades on a marble statue. That one detail is what people
                 remember.
@@ -104,7 +96,6 @@ export default function WorkPage() {
       <section className="relative overflow-hidden bg-navy py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold">01 · Identity</p>
             <h2 className="max-w-3xl font-display text-4xl leading-[1.05] text-cream sm:text-5xl">
               The crest, the wordmark, <span className="text-gold">the colours.</span>
             </h2>
@@ -112,7 +103,7 @@ export default function WorkPage() {
 
           <div className="mt-14 grid gap-5 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
-              <div className="relative flex h-full items-center justify-center overflow-hidden rounded-[2rem] border border-gold/30 bg-navy-deep p-12">
+              <div className="relative flex h-full items-center justify-center overflow-hidden rounded-[2rem] bg-navy-deep p-12">
                 <GreekKey className="absolute inset-0 text-navy-soft opacity-50" />
                 <Image
                   src="/images/crest-badge.webp"
@@ -144,7 +135,7 @@ export default function WorkPage() {
                   {palette.map((c) => (
                     <div key={c.hex} className={`flex h-36 flex-col justify-end rounded-[1.5rem] p-5 ${c.className}`}>
                       <p className="font-display text-lg">{c.name}</p>
-                      <p className="text-sm font-semibold opacity-75">{c.hex}</p>
+                      <p className="text-[15px] font-semibold">{c.hex}</p>
                     </div>
                   ))}
                 </div>
@@ -158,7 +149,7 @@ export default function WorkPage() {
       <section className="bg-cream py-24 text-navy sm:py-32">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <figure className="overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-30px_rgba(0,35,51,0.5)]">
+            <figure className="overflow-hidden rounded-[2rem]">
               <Image
                 src="/images/statue-poster.webp"
                 alt="Campaign poster: marble statue of a king wearing a gold crown and reflective sunglasses"
@@ -169,20 +160,12 @@ export default function WorkPage() {
             </figure>
           </Reveal>
           <Reveal delay={120}>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-gold">02 · Campaign</p>
             <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl">The poster that stops the scroll.</h2>
-            <p className="mt-6 text-lg leading-relaxed text-navy/75">
+            <p className="mt-6 text-lg leading-relaxed text-navy">
               The launch poster puts everything in one frame: the giant wordmark behind, the
               marble king in front, the crest as a sign-off and the brand line in plain sight.
               Built square for social, it works just as well printed.
             </p>
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {["Social", "Print", "Launch"].map((t) => (
-                <li key={t} className="rounded-full border border-navy/20 px-3 py-1 text-xs font-medium">
-                  {t}
-                </li>
-              ))}
-            </ul>
           </Reveal>
         </div>
       </section>
@@ -192,10 +175,9 @@ export default function WorkPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em]">03 · Rollout</p>
               <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl">One system, every screen.</h2>
             </div>
-            <p className="max-w-md text-lg leading-relaxed text-navy/80 lg:justify-self-end">
+            <p className="max-w-md text-lg font-medium leading-relaxed text-navy lg:justify-self-end">
               Same colours, same lettering, same king, whether it&apos;s a laptop homepage,
               a tablet or a phone lock screen.
             </p>
@@ -223,13 +205,10 @@ export default function WorkPage() {
                 />
               </figure>
               <div className="flex-1 rounded-[2rem] bg-navy p-8 text-cream sm:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">What we delivered</p>
-                <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                <h3 className="font-display text-2xl text-gold">What we delivered</h3>
+                <ul className="mt-6 grid gap-x-6 gap-y-3 text-[15px] sm:grid-cols-2">
                   {deliverables.map((d) => (
-                    <li key={d} className="flex gap-3 text-sm">
-                      <span aria-hidden="true" className="text-gold">◆</span>
-                      {d}
-                    </li>
+                    <li key={d}>{d}</li>
                   ))}
                 </ul>
               </div>

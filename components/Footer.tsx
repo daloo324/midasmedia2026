@@ -6,7 +6,7 @@ import { navLinks } from "@/lib/content";
 // The footer: the WhatsApp number is the headline, so getting in touch is the last big thing on every page.
 export function Footer() {
   return (
-    <footer className="flex min-h-[75svh] flex-col bg-navy-deep text-cream">
+    <footer className="flex min-h-[60svh] flex-col bg-navy-deep text-cream">
       <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-5 pt-10 sm:px-8">
         {/* Top row: small wordmark, notes, back to top */}
         <div className="flex flex-col gap-6 text-[15px] leading-relaxed lg:flex-row lg:items-start lg:justify-between">
